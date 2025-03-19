@@ -7,16 +7,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model BlogPost {
-  id        Int      @id @default(autoincrement())
-  title     String
-  content   String
-  createdAt DateTime @default(now())
-}
-
 model Post {
   id        Int      @id @default(autoincrement())
   title     String   @db.VarChar(255)
+  slug      String   @unique
   createdAt DateTime @default(now()) @db.Timestamp(6)
   content   String?
   published Boolean  @default(false)
